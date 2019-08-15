@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import QuoteBox from './components/QuoteBox.js';
+import { Script } from 'vm';
 
 class App extends React.Component{
   constructor(props){
@@ -14,6 +15,11 @@ class App extends React.Component{
   }
   componentDidMount(){
     this.handleClick();
+    const script = document.createElement('script');
+    script.src = "https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js";
+    script.async = true;
+
+    document.body.appendChild(script);
   }
   
   handleClick(){
@@ -25,7 +31,7 @@ class App extends React.Component{
     let random = Math.floor(Math.random()*(4-1+1)+1);
     let body = document.getElementsByTagName('body')[0];
     let button = document.getElementById("new-quote");
-    let twitter = document.getElementById('twitter');
+    let twitter = document.getElementById('tweet-quote');
     button.style.backgroundColor = colors[random];
     body.style.color = colors[random];
     body.style.backgroundColor = colors[random];
@@ -42,7 +48,7 @@ class App extends React.Component{
           let author = quotesData["quotes"][randomNum]['author'];
           document.getElementById('text').innerHTML = quote;
           document.getElementById('author').innerHTML = author;
-          document.getElementById('twitter').href = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=" + encodeURIComponent('"' + quote + '"' + author);
+          document.getElementById('tweet-quote').href = "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=" + encodeURIComponent('"' + quote + '"' + author);
           
       }
     };
@@ -53,10 +59,13 @@ class App extends React.Component{
   }
 
 
+
+
   render(){
     return(
       <div id='body'>
        <QuoteBox quote={this.state.quote} author={this.state.author} handleClick={this.handleClick} />
+      
       </div>
     )
   }

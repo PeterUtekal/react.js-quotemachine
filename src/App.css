@@ -58,7 +58,7 @@ body{
   opacity: 0.9;
   transition-duration: 0s;
 }
-#twitter{
+#tweet-quote{
   position: absolute;
   bottom: 20px;
   left: 20px;
@@ -66,6 +66,6 @@ body{
   border-radius: 5px;
   padding: 5px;
 }
-#twitter:hover{
+#tweet-quote:hover{
   opacity: 0.9;
 }
